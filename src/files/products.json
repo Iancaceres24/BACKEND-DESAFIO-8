@@ -1,0 +1,24 @@
+[
+	{
+		"title": "lechuga",
+		"description": "Una buena lechuga",
+		"code": "21312",
+		"price": "$20",
+		"stock": "100",
+		"category": "Verdura",
+		"id": 1,
+		"status": true,
+		"thumbnails": []
+	},
+	{
+		"title": "pera",
+		"description": "Una jugoza pera",
+		"code": "121523",
+		"price": "$30",
+		"stock": "25",
+		"category": "Fruta",
+		"id": "2",
+		"status": true,
+		"thumbnails": []
+	}
+]

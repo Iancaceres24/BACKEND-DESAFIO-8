@@ -1,0 +1,33 @@
+
+<div>
+
+    <div>
+    <h1>Bienvenido {{user.full_name}}</h1>
+    <p>Email: {{user.email}}</p>
+    <p>Edad: {{user.age}}</p>
+    
+    </div>
+
+    <div>
+    <ul>
+        {{#each products}}
+        <hr>
+        <li>{{title}}</li>
+        <li>{{description}}</li>
+        <li>{{price}}</li>
+        <li><button>Agregar al carrito</button></li>
+        {{/each}}
+    </ul>
+    </div>
+    <div>
+        {{#if options.hasPrevPage}}
+        <a href="/students?page={{options.prevPage}}">Anterior</a>
+        {{/if}}
+        <span>Pagina {{students.page}} de {{options.totalPages}}</span>
+        {{#if options.hasNextPages}}
+            <a href="/students?page={{options.nextPage}}">Siguiente</a>
+        {{/if}}
+    </div>
+    <br>
+    <a href="/api/sessions/logout"><button>Salir de la session</button></a>
+</div>
