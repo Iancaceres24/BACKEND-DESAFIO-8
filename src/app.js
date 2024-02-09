@@ -4,6 +4,7 @@ import {engine} from "express-handlebars"
 import  MongoStore from "connect-mongo"
 import session from "express-session"
 import passport from "passport"
+import { options } from "./config/config.js"
 
 import __dirname from "./utils.js"
 import { cartRouter } from "./routes/carts.routes.js"
@@ -12,10 +13,10 @@ import {viewRouter} from "./routes/view.routes.js"
 import sessionRouter from "./routes/sessions.routes.js"
 import inicializePassport from "./config/passport.config.js"
 
-const MONGO = "mongodb+srv://iancaceres:familia123@backend.atwvpnx.mongodb.net/DESAFIO-7"
+const MONGO = options.mongo.url
 const connection = mongoose.connect(MONGO)
 
-const PORT = 8080
+const PORT = options.server.port
 
 const app = express()
 
@@ -37,7 +38,7 @@ app.use(session({
         mongoUrl: MONGO,
         ttl:3600
     }),
-    secret: "familia123",
+    secret: options.session.secret,
     resave: false,
     saveUninitialized: false
 }))

@@ -3,16 +3,9 @@ import productModel from "../models/products.models.js"
 class ProductManagerDB {
     
 
-    getProducts = async (options)=>{
+    getProducts = async ()=>{
 
-        const products = await productModel.paginate(
-            {
-                
-            },
-            {
-                options
-            }
-        )
+        const products = await productModel.find()
             return products 
     }
 

@@ -1,57 +1,17 @@
 import {Router} from "express"
-import {CartManagerDB} from "../dao/dbManagers/CartManagerDB.js"
+import CartController from "../controlador/cart.controler.js";
 
-const path = "carts.json"
+
 const router = Router() 
-const cartManagerDB = new CartManagerDB(path)
 
-router.get("/", async(req,res)=>{
-    const carts = await cartManagerDB.getCarts()
-    res.send({
-        status:"succes",
-        carts: carts
-    })
-})
+router.get("/",CartController.getCart)
 
-router.get("/:cid", async (req, res) => {
-    const carts = await cartManagerDB.getCartsByID()
-    const cid = req.params.cid;
-    const carri = carts.find(car =>{return car.id == cid})
 
-    if (!carri) {
-        return res.json({
-            error: "Producto no encontrado"
-        });
-    } else {
-        res.json({
-            Carrito: carri
-        });
-    }
-});
+router.get("/:cid",CartController.getCartId)
 
-router.post("/", async(req,res)=>{
-    // const cart = req.body
-    // const products = req.body.products
-    // const carts = await cartManagerFile.crearCarts(cart,products)
-    const cart = await cartManagerDB.createCart()
+router.post("/",CartController.createCart)
 
-        
-    res.send({
-        status:"succes",
-        msg: "Producto creado",
-        carritos: cart
-    })
-})
-router.post("/:cid/products /:pid", async(req,res)=>{
-    const cid = req.params.cid
-    const pid = req.params.pid
-    const stock = req.body.stock
-    const cart = await cartManagerDB.addProductsInCart(pid,cid,stock)
-    res.send({
-        status:"succes",
-        msg: cart
-    })
-})
+router.post("/:cid/products /:pid", CartController.addCart)
 
 
 
